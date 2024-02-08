@@ -37,6 +37,7 @@ const (
 	PortagePkg              Type = "portage"
 	PythonPkg               Type = "python"
 	Rpkg                    Type = "R-package"
+	RockspecPkg             Type = "rockspec"
 	RpmPkg                  Type = "rpm"
 	RustPkg                 Type = "rust-crate"
 	SwiftPkg                Type = "swift"
@@ -71,6 +72,7 @@ var AllPkgs = []Type{
 	PortagePkg,
 	PythonPkg,
 	Rpkg,
+	RockspecPkg,
 	RpmPkg,
 	RustPkg,
 	SwiftPkg,
@@ -127,6 +129,8 @@ func (t Type) PackageURLType() string {
 		return packageurl.TypeNPM
 	case Rpkg:
 		return packageurl.TypeCran
+	case RockspecPkg:
+		return packageurl.TypeRockspec
 	case RpmPkg:
 		return packageurl.TypeRPM
 	case RustPkg:
@@ -161,6 +165,8 @@ func TypeByName(name string) Type {
 		return DebPkg
 	case packageurl.TypeRPM:
 		return RpmPkg
+	case packageurl.TypeRockspec:
+		return RockspecPkg
 	case "alpm":
 		return AlpmPkg
 	case packageurl.TypeAlpine, "alpine":

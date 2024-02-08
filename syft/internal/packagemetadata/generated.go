@@ -40,6 +40,7 @@ func AllTypes() []any {
 		pkg.PythonPoetryLockEntry{},
 		pkg.PythonRequirementsEntry{},
 		pkg.RDescription{},
+		pkg.RockspecPackage{},
 		pkg.RpmArchive{},
 		pkg.RpmDBEntry{},
 		pkg.RubyGemspec{},

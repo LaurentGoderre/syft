@@ -243,3 +243,5 @@ retract (
 )
 
 replace github.com/mholt/archiver/v3 v3.5.1 => github.com/anchore/archiver/v3 v3.5.2
+
+replace github.com/anchore/packageurl-go => github.com/LaurentGoderre/packageurl-go v0.0.0-20240208193130-bf13d6cde281

@@ -460,4 +460,12 @@ var commonTestCases = []testCase{
 			"Akismet Anti-spam: Spam Protection": "5.3",
 		},
 	},
+	{
+		name:        "find rockspec package",
+		pkgType:     pkg.RockspecPkg,
+		pkgLanguage: pkg.Lua,
+		pkgInfo: map[string]string{
+			"kong": "3.7.0-0",
+		},
+	},
 }
