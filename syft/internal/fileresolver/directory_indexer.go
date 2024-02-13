@@ -126,12 +126,16 @@ func (r *directoryIndexer) indexTree(root string, stager *progress.Stage) ([]str
 	}
 
 	if !shouldIndexFullTree {
-		newRoots, err := r.indexBranch(root, stager)
-		if err != nil {
-			return nil, fmt.Errorf("unable to index branch=%q: %w", root, err)
-		}
+		_, pathError := os.Lstat(root)
+		if pathError == nil {
+			newRoots, err := r.indexBranch(root, stager)
 
-		roots = append(roots, newRoots...)
+			if err != nil {
+				return nil, fmt.Errorf("unable to index branch=%q: %w", root, err)
+			}
+
+			roots = append(roots, newRoots...)
+		}
 
 		return roots, nil
 	}
