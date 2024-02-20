@@ -63,6 +63,15 @@ multiline = [[
 `,
 		},
 		{
+			name: "variables",
+			content: `
+local foo = "bar"
+local baz = foo
+
+hello = baz
+`,
+		},
+		{
 			name: "complex syntax",
 			content: `
 foo = "bar"
@@ -124,6 +133,13 @@ foo = "bar'
 			content: `
 test = [[
 	unfinished
+		`,
+		},
+		{
+			name:    "undefined local",
+			wantErr: require.Error,
+			content: `
+test = hello
 		`,
 		},
 	}
