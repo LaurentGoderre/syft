@@ -161,6 +161,11 @@ func parseRockspecNode(data []byte, i *int, locals map[string]string) (*rockspec
 		return &rockspecNode{
 			key, value,
 		}, nil
+	case '(':
+		skipExpression(data, i)
+		return &rockspecNode{
+			key: ",",
+		}, nil
 	case '"', '\'':
 		str, err := parseRockspecString(data, i, locals)
 
@@ -358,6 +363,10 @@ func parseLocal(data []byte, i *int, locals map[string]string) error {
 	}
 
 	return nil
+}
+
+func skipExpression(data []byte, i *int) {
+	parseComment(data, i)
 }
 
 func isLiteral(c byte) bool {
