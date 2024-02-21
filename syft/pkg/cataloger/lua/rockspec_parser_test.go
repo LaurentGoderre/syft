@@ -79,6 +79,16 @@ baz = "123"
 `,
 		},
 		{
+			name: "concatenation",
+			content: `
+local foo = "bar"
+local baz = "123"
+hello = "world"..baz
+baz = foo.." "..baz
+test = foo .. baz
+`,
+		},
+		{
 			name: "complex syntax",
 			content: `
 foo = "bar"
