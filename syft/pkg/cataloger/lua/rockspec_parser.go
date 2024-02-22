@@ -48,6 +48,14 @@ func parseRockspecBlock(data []byte, i *int, locals map[string]string) ([]rocksp
 	parsing.SkipWhitespace(data, i)
 
 	c := data[*i]
+
+	// Block starting with a comment
+	if c == '-' {
+		parseComment(data, i)
+		parsing.SkipWhitespace(data, i)
+		c = data[*i]
+	}
+
 	switch {
 	case c == '"' || c == '\'':
 		iterator = parseRockspecListItem
