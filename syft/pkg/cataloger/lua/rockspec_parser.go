@@ -141,6 +141,15 @@ func parseRockspecNode(data []byte, i *int, locals map[string]string) (*rockspec
 
 	*i++
 	parsing.SkipWhitespace(data, i)
+
+	if key == "build" {
+		skipBuildNode(data, i)
+
+		return &rockspecNode{
+			key: ",",
+		}, nil
+	}
+
 	c = data[*i]
 
 	switch c {
@@ -415,6 +424,27 @@ func parseLocal(data []byte, i *int, locals map[string]string) error {
 	}
 
 	return nil
+}
+
+func skipBuildNode(data []byte, i *int) {
+	bracesCount := 0
+
+	for *i < len(data) {
+		c := data[*i]
+
+		switch c {
+		case '{':
+			bracesCount++
+		case '}':
+			bracesCount--
+		}
+
+		if bracesCount == 0 {
+			return
+		}
+
+		*i++
+	}
 }
 
 func skipExpression(data []byte, i *int) {
